@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sujal Yadav</title>
+<meta name="description" content="Sujal Yadav, WordPress Developer: real-estate web platforms, SEO infrastructure and lead pipelines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* Layout: drafting-sheet dossier — hairline-ruled project records, stack specs in a side column */
+  :root {
+    --paper:      #F3F6FA;
+    --surface:    #FFFFFF;
+    --ink:        #0D1726;
+    --ink-soft:   #4D5C72;
+    --ink-faint:  #7A8799;
+    --rule:       #D2DCE9;
+    --blue:       #1A49CE;
+    --blue-wash:  #E7EEFC;
+
+    --display: "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif;
+    --body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #070C15;
+      --surface:   #0D1524;
+      --ink:       #E3EAF6;
+      --ink-soft:  #93A2B8;
+      --ink-faint: #67758C;
+      --rule:      #1D2939;
+      --blue:      #83A8FF;
+      --blue-wash: #141F38;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #070C15;
+    --surface:   #0D1524;
+    --ink:       #E3EAF6;
+    --ink-soft:  #93A2B8;
+    --ink-faint: #67758C;
+    --rule:      #1D2939;
+    --blue:      #83A8FF;
+    --blue-wash: #141F38;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  a { color: var(--blue); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  code { font-family: var(--mono); font-size: .88em; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px 64px);
+    opacity: .35;
+    pointer-events: none;
+  }
+  .masthead .wrap { position: relative; padding-block: 56px 44px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 8vw, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: -.015em;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .role {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.05rem, 3.4vw, 1.4rem);
+    color: var(--ink-soft);
+    margin: 0 0 26px;
+  }
+  .lede {
+    max-width: 62ch;
+    font-size: 1.0625rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 36px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .fact { min-width: 0; }
+  .fact dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 3px;
+  }
+  .fact dd {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- section frame ---------- */
+  section { border-bottom: 1px solid var(--rule); }
+  section > .wrap { padding-block: 48px; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .sec-head h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -.01em;
+    margin: 0;
+  }
+  .sec-head p {
+    margin: 0;
+    color: var(--ink-faint);
+    font-size: .9rem;
+    max-width: 48ch;
+    min-width: 0;
+  }
+
+  /* ---------- capabilities ---------- */
+  .caps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 26px 32px;
+  }
+  .cap { min-width: 0; }
+  .cap h3 {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cap ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cap li {
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 3px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-soft);
+    background: var(--surface);
+  }
+
+  /* ---------- project records ---------- */
+  .records { display: flex; flex-direction: column; gap: 0; }
+
+  .record {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 0 40px;
+    padding-block: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .record:first-child { border-top: 0; padding-top: 4px; }
+
+  .rec-id { min-width: 0; }
+  .rec-id h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.15;
+    margin: 0 0 4px;
+    letter-spacing: -.01em;
+  }
+  .domain {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--blue);
+    word-break: break-word;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .spec { margin: 0; }
+  .spec dt {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .spec dd {
+    margin: 0 0 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .rec-body { min-width: 0; }
+  .rec-body > p {
+    margin: 0 0 14px;
+    max-width: 68ch;
+  }
+  .rec-body ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    max-width: 72ch;
+  }
+  .rec-body li {
+    position: relative;
+    padding-left: 20px;
+    font-size: .9375rem;
+    color: var(--ink-soft);
+  }
+  .rec-body li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: .62em;
+    width: 10px;
+    height: 1px;
+    background: var(--blue);
+  }
+  .rec-body li b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- own builds ---------- */
+  .builds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 20px;
+  }
+  .build {
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 22px;
+  }
+  .build h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0 0 3px;
+  }
+  .build .kind {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .build p { margin: 0 0 14px; font-size: .9375rem; color: var(--ink-soft); }
+  .build .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .build .chips span {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 2px 7px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- footer ---------- */
+  footer .wrap { padding-block: 34px 48px; }
+  footer p { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+
+  @media (max-width: 760px) {
+    .record { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .rec-id { margin-bottom: 16px; }
+    .spec { display: flex; flex-wrap: wrap; gap: 0 26px; }
+    .spec dd { margin-bottom: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">WordPress Developer · Realatte Ventures LLP</p>
+    <h1>Sujal Yadav</h1>
+    <p class="role">Real-estate web platforms, SEO infrastructure and lead pipelines</p>
+    <p class="lede">
+      I build and maintain the production sites behind property developers — multi-city project
+      catalogues, campaign landing pages and the lead capture that carries an enquiry from a form
+      field to the sales team. Most of the work is <strong>diagnosis on live systems</strong>: a cloaked
+      SEO compromise, a redirect loop that locks you out of wp-admin, a plugin that silently
+      breaks every form on a site. Shared hosting, no staging, real traffic.
+    </p>
+
+    <dl class="facts">
+      <div class="fact"><dt>Experience</dt><dd>2024 — present</dd></div>
+      <div class="fact"><dt>Production sites</dt><dd>10</dd></div>
+      <div class="fact"><dt>Platforms</dt><dd>5</dd></div>
+      <div class="fact"><dt>Education</dt><dd>BCA, TMV Pune</dd></div>
+    </dl>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Stack</h2>
+      <p>What I reach for, grouped by the part of the system it touches.</p>
+    </div>
+    <div class="caps">
+      <div class="cap">
+        <h3>Core</h3>
+        <ul>
+          <li>PHP</li><li>WordPress</li><li>JavaScript</li><li>jQuery</li>
+          <li>HTML</li><li>CSS</li><li>MySQL / MariaDB</li><li>CodeIgniter</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <h3>WordPress</h3>
+        <ul>
+          <li>Custom themes</li><li>mu-plugins</li><li>ACF Pro</li><li>Custom post types</li>
+          <li>Contact Form 7</li><li>CFDB7</li><li>Elementor / Pro</li><li>WP-CLI</li>
+          <li>WooCommerce</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <h3>SEO &amp; analytics</h3>
+        <ul>
+          <li>Yoast</li><li>Rank Math</li><li>JSON-LD schema</li><li>Canonicals</li>
+          <li>Sitemaps / robots</li><li>GTM</li><li>GA4</li><li>Google Ads</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <h3>Infrastructure</h3>
+        <ul>
+          <li>cPanel / WHM</li><li>nginx</li><li>LiteSpeed</li><li>Apache / .htaccess</li>
+          <li>Cloudflare</li><li>Sucuri WAF</li><li>Redis cache</li><li>WP Rocket</li>
+          <li>DNS</li><li>SSH / FTPES</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <h3>Integrations</h3>
+        <ul>
+          <li>CRM lead forwarding</li><li>REST / JSON-RPC</li><li>MCP</li>
+          <li>Google Sheets API</li><li>reCAPTCHA</li><li>OTP verification</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <h3>Also</h3>
+        <ul>
+          <li>React Native</li><li>Expo</li><li>NativeWind</li><li>TanStack Query</li>
+          <li>Python</li><li>Playwright</li><li>Git</li><li>Wix Editor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Client work</h2>
+      <p>Live production sites for property developers and clinics, built and maintained end to end.</p>
+    </div>
+
+    <div class="records">
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Arvind SmartSpaces</h3>
+          <span class="domain">arvindsmartspaces.com</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>WordPress · bespoke theme · ACF Pro · CF7 + CFDB7 · Yoast · Redis · Cloudflare · cPanel · WP-CLI</dd>
+            <dt>Scope</dt>
+            <dd>Flagship account</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>
+            Multi-city developer platform covering Ahmedabad, Bangalore, Pune, Vadodara and Mumbai —
+            project post types, a location-and-status mega menu, standalone campaign landing pages,
+            and lead capture on every project page.
+          </p>
+          <ul>
+            <li><b>SEO audit implementation.</b> Rolled out 60 H1 changes across the site from a client audit and verified every one live, working out which of several templates actually rendered each heading.</li>
+            <li><b>Gated downloads.</b> Put brochure downloads behind an OTP-verified form so document requests are captured as leads.</li>
+            <li><b>Staging to production migrations.</b> Moved landing pages and a complete category-driven blog across accounts — templates, ACF field groups, taxonomy hierarchy, nav menus and media — diagnosing a duplicate field group shadowing the real one and an importer that stripped <code>&amp;</code> from 270 meta keys.</li>
+            <li><b>Channel-partner variant.</b> Cloned a campaign page to its own URL with different form behaviour, parameter-gated so the original page's OTP flow stayed untouched.</li>
+            <li><b>Tagging.</b> GTM and Google Ads setup, including a conversion tag injected at the Cloudflare edge in first-party mode.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Ramky Estates</h3>
+          <span class="domain">ramkyestates.com</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>WordPress · custom theme · mu-plugins · ACF · Yoast · WP Rocket · nginx</dd>
+            <dt>Scope</dt>
+            <dd>Incident response + SEO build</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>
+            Hyderabad developer site that was serving a different page to Google than to visitors.
+            Cleaned the compromise, then implemented the client's full on-page SEO specification
+            across 79 pages.
+          </p>
+          <ul>
+            <li><b>Found the cloaker.</b> A root-level injector fired on Googlebot user agents, crawler IP ranges and Google referrers, serving an Indonesian gambling page while cached pages looked clean. Also found an unauthenticated web shell in wp-admin and a publicly downloadable 5.6 GB full-site backup.</li>
+            <li><b>ALT inheritance.</b> The theme hard-coded image ALTs, so a permanent mu-plugin rewrites them from the Media Library through an output buffer that runs inside WP Rocket's own buffer.</li>
+            <li><b>Schema and headings.</b> Per-page JSON-LD through an ACF field plus mu-plugin, and one H1 per template across every page.</li>
+            <li><b>Recovery.</b> Restored Yoast taxonomy meta wiped by a write that saved one key at a time, rebuilding the lost fields from archived copies.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Sri Lotus Developers</h3>
+          <span class="domain">lotusdevelopers.com</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>CodeIgniter · WordPress · nginx · php-fpm · MySQL · Ubuntu VPS</dd>
+            <dt>Scope</dt>
+            <dd>Two apps, one domain</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>
+            Mumbai luxury developer running a CodeIgniter main site with a WordPress blog mounted at
+            <code>/blogs</code> on the same domain, on a root-SSH VPS.
+          </p>
+          <ul>
+            <li><b>Redirect loop.</b> The blog's site URL had been set to the www host while nginx held a hard www → non-www 301 for the whole domain, so every request bounced forever — and wp-login posted to www too, making the admin UI useless. Repaired directly in the database.</li>
+            <li><b>Unknown paths return HTTP 200</b> on the CodeIgniter side, so status codes alone can't tell you whether a URL exists. Documented for whoever audits it next.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Proviso Group</h3>
+          <span class="domain">proviso.in</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>WordPress · Hello Elementor · ElementsKit · JetEngine · Yoast · Hostinger LiteSpeed</dd>
+            <dt>Scope</dt>
+            <dd>SEO + conversion</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>
+            Navi Mumbai developer site on a heavy Elementor add-on stack, maintained without server
+            access.
+          </p>
+          <ul>
+            <li><b>Sitemap architecture.</b> A PHP-level redirect intercepted the Yoast sitemap index and couldn't be found in any snippet, theme file or plugin. Worked around with a static sitemap index — deleting it would recreate an infinite loop, so the constraint is documented.</li>
+            <li><b>Blog schema.</b> Yoast emits no graph on single posts here, so BreadcrumbList and BlogPosting are hand-authored per post.</li>
+            <li><b>Lead popup.</b> Fixed a fixed-height modal whose close button rendered off-screen on mobile.</li>
+            <li><b>Documented a trap:</b> page titles don't match slugs, so editing a page found by searching its title reliably opens the wrong post. Resolve the ID through the REST API first.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Sanctuary Kolkata</h3>
+          <span class="domain">sanctuarykolkata.com</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>WordPress · Elementor Pro · Premium Addons · CF7 · Cloudflare · LiteSpeed</dd>
+            <dt>Scope</dt>
+            <dd>Forms + lead capture</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>Residential project site where every form on the site stopped rendering at once.</p>
+          <ul>
+            <li><b>Root cause.</b> Premium Addons stored the form reference as <code>id::title</code>; a WordPress release then rejected non-numeric IDs, so every widget reported "Contact form not found". Re-selecting the form didn't help — the fix was a plugin update. My first theory, that the data had been tampered with, was wrong.</li>
+            <li><b>Lead quality.</b> Added UTM capture into hidden fields with localStorage persistence, Indian mobile validation on both client and server, and gated brochure / floor-plan downloads through a thank-you page.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Revasa — La Valora</h3>
+          <span class="domain">revasa.in/la-valora</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>WordPress subfolder · ThemeREX · Elementor · Royal Addons · W3 Total Cache</dd>
+            <dt>Scope</dt>
+            <dd>Post-migration repair</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>Project microsite showing blank bands where parallax sections and logos should have been.</p>
+          <ul>
+            <li><b>Dead staging domain.</b> The site had been migrated from a preview host whose DNS no longer resolved, with roughly sixteen URLs never replaced — parallax backgrounds, both logos, a webfont and several links.</li>
+            <li><b>Fixed through my own MCP bridge</b> across 55 live postmeta rows plus theme options, widgets and menu URLs, with zero stale references left on the page.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Attalika Residences</h3>
+          <span class="domain">attalikaresidences.com</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>Static PHP · WordPress · GoDaddy cPanel · Sucuri WAF · DNS</dd>
+            <dt>Scope</dt>
+            <dd>Migration + outage</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>Static marketing site with a separate WordPress appointment-booking page.</p>
+          <ul>
+            <li><b>Outage.</b> The booking page died when a DNS zone change dropped its A record. Separated origin faults from WAF and DNS by resolving straight to the origin IP.</li>
+            <li><b>Subdomain to path.</b> Moved the WordPress install under the main site's path — file sync, URL search-replace, hardcoded theme URLs, rewrite base — with the old subdomain kept and redirected.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Akshar Developers</h3>
+          <span class="domain">akshardevelopers.com</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>Custom PHP · cPanel / LiteSpeed · .htaccess · PDF.js</dd>
+            <dt>Scope</dt>
+            <dd>Document portal</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>
+            Hand-built PHP site with clean URLs, maintained over FTPES only — no SSH, no WP admin.
+          </p>
+          <ul>
+            <li><b>View-only document viewer.</b> Statutory documents render to canvas through PDF.js behind one-time session tokens and a watermark, with download and print disabled and direct file requests blocked at the server. Share links hand out a document key, never a file path.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>31 Palma Drive</h3>
+          <span class="domain">31palmadrive.in</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>WordPress · Elementor · Yoast · Hostinger · Git</dd>
+            <dt>Scope</dt>
+            <dd>Indexing</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>Single-project landing page, version controlled, with its index profile tightened.</p>
+          <ul>
+            <li>Physical robots.txt overriding the plugin's virtual one, thank-you page excluded, author archives disabled, and header/footer builder post types removed from the sitemap — without touching the builder's own delete control, which would have taken the live header down.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="record">
+        <div class="rec-id">
+          <h3>Sunetra Eye Centre</h3>
+          <span class="domain">sunetra.co.in</span>
+          <dl class="spec">
+            <dt>Stack</dt>
+            <dd>Wix Editor · Wix Forms · GTM</dd>
+            <dt>Scope</dt>
+            <dd>Conversion</dd>
+          </dl>
+        </div>
+        <div class="rec-body">
+          <p>
+            Ghaziabad eye-care clinic on classic Wix — no code access, so every change is made in the
+            visual editor.
+          </p>
+          <ul>
+            <li>Added a desktop "Book Appointment" header CTA and a mobile-only click-to-call button, both routed to the contact form, working inside the editor's fixed 980px grid so nothing clips on smaller laptops.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Own builds</h2>
+      <p>Tools written to solve problems the client work kept producing.</p>
+    </div>
+    <div class="builds">
+
+      <div class="build">
+        <h3>WP MCP Bridge</h3>
+        <span class="kind">WordPress plugin</span>
+        <p>
+          Connects any WordPress site to an AI coding agent using nothing but wp-admin access — the
+          common case on client sites with no FTP or hosting panel. 27 tools covering the REST API,
+          Elementor data, post meta, options, scoped file read/write and read-only queries. Every
+          write returns a backup ID, and PHP or .htaccess changes revert themselves automatically if
+          the site fatals.
+        </p>
+        <div class="chips">
+          <span>PHP</span><span>WordPress</span><span>JSON-RPC</span><span>MCP</span><span>REST</span>
+        </div>
+      </div>
+
+      <div class="build">
+        <h3>The Akhbaar</h3>
+        <span class="kind">React Native app</span>
+        <p>
+          India-first news reader in the visual language of an Indian daily, with Hindi support and
+          an in-app reader view. The free news API rate-limits bursts, so requests are queued about a
+          second apart and retried, duplicate stories are collapsed, and the query cache is persisted
+          to disk to spend fewer calls. Ships with bundled articles when no API key is present.
+        </p>
+        <div class="chips">
+          <span>Expo SDK 57</span><span>Expo Router</span><span>NativeWind</span>
+          <span>TanStack Query</span><span>TypeScript</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Sujal Yadav · WordPress Developer · Realatte Ventures LLP</p>
+  </div>
+</footer>
+
+</body>
+</html>
